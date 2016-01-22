@@ -1,4 +1,13 @@
-FROM python
-COPY . /src
-EXPOSE  5000
-CMD ["python", "/src/simpleapp.py --port 5000"]
+FROM alpine:3.1
+
+# Update
+RUN apk add --update python py-pip
+
+# Install app dependencies
+RUN pip install Flask
+
+# Bundle app source
+COPY simpleapp.py /src/simpleapp.py
+
+EXPOSE  8000
+CMD ["python", "/src/simpleapp.py", "-p 8000"]
