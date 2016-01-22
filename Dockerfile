@@ -7,6 +7,7 @@ RUN apk add --update python py-pip
 RUN pip install Flask
 
 # Bundle app source
+RUN cd /src
 COPY . /src
 
 EXPOSE  8000
